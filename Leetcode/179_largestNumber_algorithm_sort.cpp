@@ -1,6 +1,6 @@
 bool cmp(const int &s1,const int &s2)
     {
-        return to_string(s1) + to_string(s2)  to_string(s2) + to_string(s1);
+        return to_string(s1) + to_string(s2) > to_string(s2) + to_string(s1);
     }
 class Solution {
     
