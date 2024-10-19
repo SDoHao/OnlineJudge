@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <stack>
+#include <queue>
 #include <unordered_map>
 using namespace std;
 using record = struct record;
@@ -11,10 +11,11 @@ struct record {
     record* next = nullptr;
 };
 
-int main() {
+int main() 
+{
     string line;
     unordered_map<string, record* > countRecoed;
-    stack<record*> qRecord;
+    queue<record*> qRecord;
     while (getline(cin, line)) {
         int pos = line.find(' ');
         string filePath = line.substr(0, pos);
@@ -55,9 +56,11 @@ int main() {
             countRecoed[fileName] = pRec;
             qRecord.push(pRec);
         }
+        if(qRecord.size() > 8)
+            qRecord.pop();
     }
     for (int i = 0; i < 8 && !qRecord.empty(); i++) {
-        auto pRec = qRecord.top();
+        auto pRec = qRecord.front();
         qRecord.pop();
         cout << pRec->fileName << " " << pRec->index << " " <<
             pRec->count << endl;
